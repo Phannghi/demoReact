@@ -3,15 +3,31 @@ import './DisplayInfo.scss';
 import Junk from '../Junk.png';
 
 class DisplayInfo extends React.Component {
-    state = {
-        isShowUser: true
-    };
+    constructor(props) {
+        console.log('call constructor: run first')
+        super(props);
+        this.state = {
+            isShowUser: true
+        };
+    }
+
     handleShowUser = () => {
         this.setState({
             isShowUser: !this.state.isShowUser
         })
     }
+    componentDidMount() {
+        console.log('>> call me component did mount');
+    }
+    componentDidUpdate(prevProps, prevState) {
+        console.log('>> call me component did update', this.props, prevProps);
+        if (this.props.listUser !== prevProps.listUser) {
+            if (this.props.listUser.length == 5)
+                alert(">> you got 5 users");
+        }
+    }
     render() {
+        console.log('>> call me render');
         const { listUser } = this.props;
         //console.log(listUser);
         return (
