@@ -15,13 +15,20 @@ không thể dùng cú pháp `{}` của JSX để in ra 1 object (_{id: 1, name:
   _Fetch dữ liệu từ API_: Thực hiện các yêu cầu HTTP để lấy dữ liệu từ server.
   _Thiết lập subscriptions_: Đăng ký các subscriptions hoặc mở kết nối WebSocket.
   _Khởi tạo thư viện bên ngoài_: Khởi tạo các thư viện bên ngoài yêu cầu DOM đã được render, chẳng hạn như thư viện đồ họa hoặc thư viện giao diện người dùng.
-- hàm `componentDidUpdate()` được dùng khi component được update đến 1 thời điểm nhất định thì ta muốn làm một điều gì đó.
+- hàm `componentDidUpdate()` được dùng khi component được update, ví dụ khi component được update đến 1 thời điểm nhất định thì ta muốn làm một điều gì đó.
   > Cú pháp: **componentDidUpdate(prevProps, prevState, snapshot) {**
           // Thực hiện các hành động cần thiết sau khi component cập nhật
   **}**
 
 ## Function component
 
-Function component không có state (`stateless`), được sử dụng khi component không cần state
+Function component không có `state` (`stateless`), không có hàm `setState`, react `Hook` ra đời để giải quyết vấn đề này
 Function component không tồn tại keyword _this_, chỉ có class component mới có keyword _this_
-Function component có đối số là _props_, component con tự động lấy được _props_ từ cha truyền xuống, không cần thông qua hàm _constructor_
+Function component có đối số là _props_, component con tự động lấy được _props_ từ component cha truyền xuống, không cần thông qua hàm _constructor_
+
+## useState
+
+useState trả ra 2 tham số, 1 là tên của state , 2 là tên công cụ muốn cập nhật cho state, tên tham số thứ 2 nên bắt đầu bằng `set`
+
+Nên dùng `const` để khai báo 1 useState, bởi vì useState nên để cho react quản lý chứ không được tự tiện gán hay cập nhật lại.
+Ex: `const [isShowListUsers, setShowListUser] = useState(true);`

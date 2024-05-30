@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './DisplayInfo.scss';
 //import Junk from '../Junk.png';
 
@@ -33,10 +33,18 @@ import './DisplayInfo.scss';
 
 const DisplayInfo = (props) => {
     const { listUser } = props;
-    //console.log(listUser);
+    const [isShowListUsers, setShowListUser] = useState(true);
+    const handleShowHideUser = () => {
+        setShowListUser(!isShowListUsers);
+    }
     return (
         <div className='display-info-container'>
-            {true &&
+            <div>
+                <button onClick={() => { handleShowHideUser() }}>
+                    {isShowListUsers ? "Hide list users" : "Show list users"}
+                </button>
+            </div>
+            {isShowListUsers &&
                 <>
                     {listUser.map((user) => {
                         return (
