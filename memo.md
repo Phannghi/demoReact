@@ -19,3 +19,9 @@ không thể dùng cú pháp `{}` của JSX để in ra 1 object (_{id: 1, name:
   > Cú pháp: **componentDidUpdate(prevProps, prevState, snapshot) {**
           // Thực hiện các hành động cần thiết sau khi component cập nhật
   **}**
+
+## Function component
+
+Function component không có state (`stateless`), được sử dụng khi component không cần state
+Function component không tồn tại keyword _this_, chỉ có class component mới có keyword _this_
+Function component có đối số là _props_, component con tự động lấy được _props_ từ cha truyền xuống, không cần thông qua hàm _constructor_
