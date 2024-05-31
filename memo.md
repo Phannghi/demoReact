@@ -32,3 +32,10 @@ useState trả ra 2 tham số, 1 là tên của state , 2 là tên công cụ mu
 
 Nên dùng `const` để khai báo 1 useState, bởi vì useState nên để cho react quản lý chứ không được tự tiện gán hay cập nhật lại.
 Ex: `const [isShowListUsers, setShowListUser] = useState(true);`
+
+## useEffect
+
+Cú pháp: `useEffect(setup, dependencies?)`
+Nếu dependencies là 1 mảng rỗng [] thì useEffect chỉ chạy 1 lần, còn không thì mỗi một lần giá trị của dependencies thay đổi thì useEffect sẽ được gọi
+
+Có thể viết nhiều hàm useEffect trong 1 function component
