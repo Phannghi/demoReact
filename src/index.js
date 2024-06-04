@@ -8,7 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import User from './components/User/User';
 import Admin from './components/Admin/Admin';
-import Home from './components/home/Home';
+import Home from './components/Home/Home';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>

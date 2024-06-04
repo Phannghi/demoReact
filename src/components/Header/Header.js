@@ -1,4 +1,5 @@
 import Container from 'react-bootstrap/Container';
+import Button from 'react-bootstrap/Button';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
@@ -20,7 +21,9 @@ const Header = () => {
                         <Nav.Link href="/admin">Admin</Nav.Link> */}
                     </Nav>
                     <Nav>
-                        <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+                        <Button variant='light' className='btn-login me-3 border-dark'>Log in</Button>
+                        <Button variant='dark' className='btn-sign'>Sign up</Button>
+                        {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                             <NavDropdown.Item >Log in</NavDropdown.Item>
                             <NavDropdown.Item >
                                 Profile
@@ -30,7 +33,7 @@ const Header = () => {
                             <NavDropdown.Item >
                                 Log out
                             </NavDropdown.Item>
-                        </NavDropdown>
+                        </NavDropdown> */}
                     </Nav>
                 </Navbar.Collapse>
             </Container>

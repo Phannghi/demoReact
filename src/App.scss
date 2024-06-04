@@ -7,13 +7,39 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 .app-container {
+  position: relative;
   .header-container {
-    .navbar-nav {
-      .nav-link {
-        &.active {
-          color: red;
+    .navbar {
+      z-index: 10;
+      padding-top: 20px;
+      &-nav {
+        .nav-link {
+          &.active {
+            color: red;
+          }
         }
       }
     }
   }
+  .home {
+    &-content {
+      position: relative;
+      padding: 100px;
+      width: 50%;
+      .title {
+        &-1 {
+          font-size: 48px;
+          font-weight: 500;
+        }
+        &-2 {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+}
+video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
 }
