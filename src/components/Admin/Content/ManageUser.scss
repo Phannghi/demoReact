@@ -1,0 +1,31 @@
+.manage-user-container {
+    .user-content {
+    }
+}
+.modal-add-user {
+    .img-preview {
+        height: 200px;
+        border: 1px dashed #ccc;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #ccc;
+        img {
+            max-height: 100%;
+            object-fit: cover;
+        }
+    }
+    .form-label-img {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 8px 12px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.5s ease;
+        background-color: #faedcd;
+        &:hover {
+            background-color: #d4a373;
+        }
+    }
+}
