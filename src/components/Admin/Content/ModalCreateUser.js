@@ -1,12 +1,20 @@
+import axios from 'axios';
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { FcPlus } from 'react-icons/fc';
-const ModalCreateUser = () => {
-    const [show, setShow] = useState(false);
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+const ModalCreateUser = (props) => {
+    const { show, setShow } = props;
+    const handleClose = () => {
+        setShow(false);
+        setEmail("");
+        setUsername("");
+        setPassword("");
+        setRole("USER");
+        setImage("");
+        setPreviewImage("");
+    }
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -21,12 +29,23 @@ const ModalCreateUser = () => {
             setImage(event.target.files[0]);
         }
     }
+    const handleSubmitCreateUser = async () => {
+        //validate
+        // call api
+        const FormData = require('form-data');
+
+        const data = new FormData();
+        data.append('email', email);
+        data.append('password', password);
+        data.append('username', username);
+        data.append('role', role);
+        data.append('userImage', image);
+
+        let resp = await axios.post('http://localhost:8081/api/v1/participant', data)
+        console.log('>>>check respone:', resp);
+    }
     return (
         <>
-            <Button variant="primary" onClick={handleShow}>
-                + Add
-            </Button>
-
             <Modal
                 className='modal-add-user'
                 show={show}
@@ -80,7 +99,7 @@ const ModalCreateUser = () => {
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                    <Button variant="primary" onClick={handleClose}>
+                    <Button variant="primary" onClick={() => handleSubmitCreateUser()}>
                         Save
                     </Button>
                 </Modal.Footer>
