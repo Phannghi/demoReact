@@ -39,3 +39,12 @@ Cú pháp: `useEffect(setup, dependencies?)`
 Nếu dependencies là 1 mảng rỗng [] thì useEffect chỉ chạy 1 lần, còn không thì mỗi một lần giá trị của dependencies thay đổi thì useEffect sẽ được gọi
 
 Có thể viết nhiều hàm useEffect trong 1 function component
+
+## export default function
+
+Khi dùng export default function thì chỉ có 1 biến được export nên khi ta muốn sử dụng biến này ở file khác ta có thể đặt tên khác cho biến, miễn là ta để đúng đường dẫn import là được
+Vd: file src/apis
+`export default instance`
+file src/services
+`import abc from './src/apis'`
+Trong ví dụ trên thì `abc` chính là biến `instance` đã export
