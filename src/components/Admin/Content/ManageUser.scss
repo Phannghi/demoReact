@@ -4,6 +4,14 @@
         .btn-add-new {
             margin: 15px 0;
         }
+        .table-user-container {
+            .btn-action {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 6px;
+            }
+        }
     }
 }
 .modal-add-user {

@@ -37,7 +37,7 @@ Ex: `const [isShowListUsers, setShowListUser] = useState(true);`
 
 Cú pháp: `useEffect(setup, dependencies?)`
 Nếu dependencies là 1 mảng rỗng [] thì useEffect chỉ chạy 1 lần, còn không thì mỗi một lần giá trị của dependencies thay đổi thì useEffect sẽ được gọi
-
+`useEffect` được gọi sau khi render xong
 Có thể viết nhiều hàm useEffect trong 1 function component
 
 ## export default function
