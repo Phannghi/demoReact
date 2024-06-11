@@ -1,27 +1,15 @@
-import { useEffect, useState } from "react";
-import { getAllUsers } from '../../../services/apiService'
 import { FaEye } from "react-icons/fa";
 import { MdEdit, MdDelete } from "react-icons/md";
 const TableUser = (props) => {
-    const [listUsers, setListUsers] = useState([]);
+    const { listUsers } = props;
 
-    useEffect(() => {
-        fetchListUsers();
-    }, [])
 
-    const fetchListUsers = async () => {
-        let resp = await getAllUsers();
-        console.log('check resp fetch', resp);
-        if (resp.EC === 0) {
-            setListUsers(resp.DT);
-        }
-    }
     return (
         <>
             <table className="table table-dark table-hover">
                 <thead>
                     <tr>
-                        <th scope="col">No</th>
+                        <th scope="col">Id</th>
                         <th scope="col">Username</th>
                         <th scope="col">Email</th>
                         <th scope="col">Role</th>
@@ -33,7 +21,7 @@ const TableUser = (props) => {
                         listUsers.map((item, index) => {
                             return (
                                 <tr key={`table-user-${index}`}>
-                                    <td>{index + 1}</td>
+                                    <td>{item.id}</td>
                                     <td>{item.username}</td>
                                     <td>{item.email}</td>
                                     <td>{item.role}</td>
