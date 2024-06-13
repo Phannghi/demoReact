@@ -11,6 +11,9 @@
                 align-items: center;
                 padding: 6px;
             }
+            .page-link:focus {
+                box-shadow: none;
+            }
         }
     }
 }

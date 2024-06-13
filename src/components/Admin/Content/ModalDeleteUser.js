@@ -36,12 +36,12 @@ const ModalDeleteUser = (props) => {
                 <Modal.Body>
                     Are you sure to delete this user:
                     <p className='d-block mb-0'>Username:
-                        <span className='fw-bold'>
+                        <span className='ms-1 fw-bold'>
                             {dataDelete && dataDelete.username ? dataDelete.username : ""}
                         </span>
                     </p>
                     <p className='d-block mb-0'>Email:
-                        <span className='fw-bold'>
+                        <span className='ms-1 fw-bold'>
                             {dataDelete && dataDelete.email ? dataDelete.email : ""}
                         </span>
                     </p>
