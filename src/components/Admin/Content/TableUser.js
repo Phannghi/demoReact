@@ -3,10 +3,9 @@ import { MdEdit, MdDelete } from "react-icons/md";
 const TableUser = (props) => {
     const { listUsers } = props;
 
-
     return (
         <>
-            <table className="table table-dark table-hover">
+            <table className="table table-success table-hover">
                 <thead>
                     <tr>
                         <th scope="col">Id</th>
@@ -27,9 +26,20 @@ const TableUser = (props) => {
                                     <td>{item.role}</td>
                                     <td>
                                         <div className="d-flex align-items-center gap-1">
-                                            <button className="btn-action"><FaEye /></button>
-                                            <button className="btn-action"><MdEdit /></button>
-                                            <button className="btn-action"><MdDelete /></button>
+                                            <button
+                                                className="btn-action"
+                                                onClick={() => props.handleClickBtnView(item)} >
+                                                <FaEye />
+                                            </button>
+                                            <button
+                                                className="btn-action"
+                                                onClick={() => props.handleClickBtnUpdate(item)}>
+                                                <MdEdit />
+                                            </button>
+                                            <button className="btn-action"
+                                                onClick={() => props.handleClickBtnDelete(item)}>
+                                                <MdDelete color="red" />
+                                            </button>
                                         </div>
                                     </td>
                                 </tr>
