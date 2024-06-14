@@ -9,13 +9,15 @@ const ModalDeleteUser = (props) => {
     const handleClose = () => setShow(false);
     const handleSubmitDelete = async () => {
         let data = await deleteUsers(dataDelete.id);
-        console.log('>>>component delete respone:', data);
+        //console.log('>>>component delete respone:', data);
 
         if (data && data.EC === 0) {
             toast.success(data.EM);
             handleClose();
             // Sau khi đóng modal thì gọi lại hàm fetch từ props để set lại ListUsers
-            await props.fetchListUsers();
+            // await props.fetchListUsers();
+            props.setCurrentPage(1);
+            await props.fetchListUsersWithPaginate(1);
         }
         if (data && data.EC !== 0) {
             toast.error(data.EM);

@@ -1,0 +1,39 @@
+.login-container {
+    .header {
+        height: 45px;
+        margin-top: 10px;
+        margin-right: 10px;
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        gap: 8px;
+    }
+    .title {
+        font-size: 25px;
+        padding: 20px 0;
+        font-weight: 500;
+    }
+    .welcome {
+        font-size: 20px;
+        padding: 10px 0;
+    }
+    .content-form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 10px;
+        input {
+            &::placeholder {
+                color: #757575;
+            }
+        }
+    }
+    .form-text-forgot {
+        text-decoration: underline;
+        color: #393737;
+        cursor: pointer;
+        &:hover {
+            opacity: 0.7;
+        }
+    }
+}

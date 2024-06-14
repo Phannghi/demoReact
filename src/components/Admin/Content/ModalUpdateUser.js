@@ -68,7 +68,8 @@ const ModalUpdateUser = (props) => {
             toast.success(data.EM);
             handleClose();
             // Sau khi đóng modal thì gọi lại hàm fetch từ props để set lại ListUsers
-            await props.fetchListUsers();
+            //await props.fetchListUsers();
+            await props.fetchListUsersWithPaginate(props.currentPage);
         }
         if (data && data.EC !== 0) {
             toast.error(data.EM);
