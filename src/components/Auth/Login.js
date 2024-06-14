@@ -24,11 +24,15 @@ const Login = (props) => {
         }
     }
     return (
-        <div className='login-container'>
+        <div className='log-container'>
             <div className="header">
                 <span>Don't have an account yet?</span>
                 <div>
-                    <button className='btn btn-light border-dark'>Sign up</button>
+                    <button
+                        className='btn btn-light border-dark'
+                        onClick={() => navigate('/register')}>
+                        Sign up
+                    </button>
                 </div>
             </div>
             <div className="title col-3 mx-auto text-center">
@@ -50,7 +54,7 @@ const Login = (props) => {
                 <div className="form-group">
                     <label htmlFor="password" className='form-label'>Password</label>
                     <input type="password" id='password'
-                        placeholder='At least 8 characters'
+                        placeholder='At least 6 characters'
                         className='form-control'
                         password={password}
                         autoComplete='current-password'

@@ -1,8 +1,9 @@
-.login-container {
+.log-container {
+    padding-bottom: 50px;
     .header {
         height: 45px;
         padding: 0 30px;
-        margin: 15px 0;
+        margin: 25px 0;
         display: flex;
         justify-content: end;
         align-items: center;
@@ -40,6 +41,14 @@
         cursor: pointer;
         &:hover {
             opacity: 0.7;
+        }
+    }
+    .form-check {
+        .form-check-label {
+            span {
+                text-decoration: underline;
+                cursor: pointer;
+            }
         }
     }
 }
