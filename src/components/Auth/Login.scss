@@ -28,6 +28,14 @@
                 color: #757575;
             }
         }
+        button {
+            &:disabled {
+                background-color: #ddd;
+                color: #afafaf;
+                cursor: no-drop;
+                border: none;
+            }
+        }
     }
     .back {
         cursor: pointer;

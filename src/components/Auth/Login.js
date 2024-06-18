@@ -1,13 +1,18 @@
 import { useState } from 'react';
+import './Login.scss'
 import { useNavigate } from 'react-router-dom'
 import { FaArrowLeft } from "react-icons/fa";
 import { postLogin } from '../../services/apiService';
 import { toast } from 'react-toastify'
-import './Login.scss'
+import { useDispatch } from 'react-redux';
+import { doLogin } from '../../redux/action/userAction';
 const Login = (props) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
+
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const validateEmail = (email) => {
         return String(email)
@@ -28,16 +33,21 @@ const Login = (props) => {
             toast.error('Invalid password');
             return;
         }
+
+        setIsLoading(true);
         // submit api
         let data = await postLogin(email, password);
-        console.log('check resp Login: ', data);
+        //console.log('check resp Login: ', data);
 
         if (data && data.EC === 0) {
+            dispatch(doLogin(data));
             toast.success(data.EM);
+            setIsLoading(false);
             navigate('/');
         }
         if (data && data.EC !== 0) {
             toast.error(data.EM);
+            setIsLoading(false);
         }
     }
     return (
@@ -81,8 +91,10 @@ const Login = (props) => {
                 <div className="mt-2">
                     <button
                         className='btn btn-dark w-100 fs-5'
-                        onClick={() => handleLogin()}>
-                        Login
+                        onClick={() => handleLogin()}
+                        disabled={isLoading}>
+                        {isLoading && <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true" />}
+                        <span> Login</span>
                     </button>
                 </div>
                 <div className="back">

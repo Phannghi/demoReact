@@ -48,3 +48,9 @@ Vd: file src/apis
 file src/services
 `import abc from './src/apis'`
 Trong ví dụ trên thì `abc` chính là biến `instance` đã export
+
+# Redux
+
+1. Khai báo dispatch+ actions
+2. Khai báo reducer + logic
+3. Sử dụng state của Redux

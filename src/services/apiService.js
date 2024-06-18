@@ -38,7 +38,8 @@ const deleteUsers = (userId) => {
 const postLogin = (userEmail, userPassword) => {
     return axios.post(`api/v1/login`, {
         email: userEmail,
-        password: userPassword
+        password: userPassword,
+        delay: 3000
     })
 }
 const registerUser = (email, password, username) => {
@@ -48,8 +49,15 @@ const registerUser = (email, password, username) => {
 //     return axios.post(`api/v1/login`, { email, password })
 //     // {a, b} = {a: a, b: b}
 // }
+
+const getQuizByUser = () => {
+    return axios.get(`api/v1/quiz-by-participant`);
+}
+const getDataQuiz = (quizId) => {
+    return axios.get(`api/v1/questions-by-quiz?quizId=${quizId}`);
+}
 export {
     postCreateNewUser, getAllUsers, putUpdateUser,
     deleteUsers, getAllUsersWithPaginate, postLogin,
-    registerUser
+    registerUser, getQuizByUser, getDataQuiz
 }
