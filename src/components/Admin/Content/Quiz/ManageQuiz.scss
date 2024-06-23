@@ -1,0 +1,37 @@
+.quiz-container {
+    padding: 15px;
+    padding-bottom: 50px;
+    .title {
+        font-size: 28px;
+        font-weight: 500;
+    }
+    legend {
+        font-size: 15px;
+    }
+    .img-preview {
+        height: 200px;
+        border: 1px dashed #ccc;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #ccc;
+        img {
+            max-height: 100%;
+            object-fit: cover;
+        }
+    }
+    .form-label-img {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 8px 12px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background-color: #20c997;
+        &:hover {
+            background-color: #527ec5;
+            color: white;
+        }
+    }
+}

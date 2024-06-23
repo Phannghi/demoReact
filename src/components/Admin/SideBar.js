@@ -4,8 +4,9 @@ import { FaTachometerAlt, FaGem, FaList, FaGithub, FaRegLaughWink, FaHeart, FaCo
 import sidebarBg from '../../assets/bg2.jpg';
 import { DiReact } from "react-icons/di";
 import './SideBar.scss'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 const SideBar = (props) => {
+    const navigate = useNavigate();
     const { image, collapsed, toggled, handleToggleSidebar } = props;
     return (
         <>
@@ -30,7 +31,7 @@ const SideBar = (props) => {
                         }}
                     >
                         <DiReact className='me-1' size='3em' color='aqua' />
-                        <span>GUCCI</span>
+                        <span className='text-white' role='button' onClick={() => navigate('/')}> QUIZZ </span>
                     </div>
                 </SidebarHeader>
 
@@ -53,7 +54,10 @@ const SideBar = (props) => {
                                 Quản lý users
                                 <Link to='/admin/manage-users' />
                             </MenuItem>
-                            <MenuItem> Quản lý bài quiz</MenuItem>
+                            <MenuItem>
+                                Quản lý bài quiz
+                                <Link to='/admin/manage-quizzes' />
+                            </MenuItem>
                             <MenuItem> Quản lý Câu hỏi</MenuItem>
                         </SubMenu>
 

@@ -12,6 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Register from './components/Auth/Register';
 import ListQuiz from './components/User/ListQuiz';
 import DetailQuiz from './components/User/DetailQuiz';
+import ManageQuiz from './components/Admin/Content/Quiz/ManageQuiz';
 const NotFound = () => {
     return (
         <div className='alert alert-danger'>
@@ -26,12 +27,13 @@ const Layout = (props) => {
                 <Route path="/" element={<App />}>
                     <Route index element={<Home />} />
                     <Route path="users" element={<ListQuiz />} />
+                    <Route path="/quiz/:id" element={<DetailQuiz />} />
                 </Route>
-                <Route path="/quiz/:id" element={<DetailQuiz />} />
 
                 <Route path="admin" element={<Admin />} >
                     <Route index element={<Dashboard />} />
                     <Route path="manage-users" element={<ManageUser />} />
+                    <Route path="manage-quizzes" element={<ManageQuiz />} />
                 </Route>
 
                 <Route path="/login" element={<Login />} />
