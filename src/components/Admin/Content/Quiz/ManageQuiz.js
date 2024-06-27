@@ -1,11 +1,12 @@
 import Select from 'react-select';
 import './ManageQuiz.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FcPlus } from 'react-icons/fc';
 import { postCreateNewQuiz } from '../../../../services/apiService';
 import { toast } from 'react-toastify';
 import TableQuiz from './TableQuiz';
 import Accordion from 'react-bootstrap/Accordion';
+import { getAllQuizAdmin } from "../../../../services/apiService";
 
 const ManageQuiz = () => {
     const options = [
@@ -13,11 +14,16 @@ const ManageQuiz = () => {
         { value: 'MEDIUM', label: 'MEDIUM' },
         { value: 'HARD', label: 'HARD' }
     ]
+    const [listQuiz, setListQuiz] = useState([]);
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [type, setType] = useState('');
     const [image, setImage] = useState('');
     const [previewImage, setPreviewImage] = useState("");
+
+    useEffect(() => {
+        fetchAllQuiz();
+    }, [])
 
     const handleUpLoadImage = (event) => {
         if (event.target && event.target.files && event.target.files[0]) {
@@ -31,10 +37,18 @@ const ManageQuiz = () => {
         setPreviewImage('');
     }
 
+    const fetchAllQuiz = async () => {
+        let res = await getAllQuizAdmin();
+        if (res && res.EC === 0) {
+            setListQuiz(res.DT);
+        }
+    }
+
     const handleSubmitQuiz = async () => {
         let res = await postCreateNewQuiz(description, name, type?.value, image)
         if (res && res.EC === 0) {
             toast.success(res.EM)
+            await fetchAllQuiz();
             setName('');
             setDescription('');
             setType('');
@@ -75,13 +89,13 @@ const ManageQuiz = () => {
                                         defaultValue={type}
                                         onChange={setType}
                                         value={type}
-                                        id='quizType' placeholder={"Quiz type..."} />
+                                        placeholder={"Quiz type..."} />
                                 </div>
                                 <div className="mb-3 d-flex align-items-center justify-content-between gap-4">
-                                    <label className='form-label-img' htmlFor='labelUpload'>
+                                    <label className='form-label-img' htmlFor='labelUploadManage'>
                                         <FcPlus /> Upload file Image
                                     </label>
-                                    <input type="file" id='labelUpload' hidden onChange={(event) => handleUpLoadImage(event)} />
+                                    <input type="file" id='labelUploadManage' hidden onChange={(event) => handleUpLoadImage(event)} />
                                     <button className='btn btn-outline-danger' onClick={() => handleDeleteImage()}>
                                         Delete
                                     </button>
@@ -102,7 +116,10 @@ const ManageQuiz = () => {
             </Accordion>
             <div className="list-detail mt-3">
                 <h3 className='title mb-3 mt-2'>List quizzes</h3>
-                <TableQuiz />
+                <TableQuiz
+                    listQuiz={listQuiz}
+                    fetchAllQuiz={fetchAllQuiz}
+                />
             </div>
         </div>
     )

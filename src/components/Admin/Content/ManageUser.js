@@ -63,6 +63,7 @@ const ManageUser = (props) => {
         setShowDeleteUser(true);
         setDataDelete(user);
     }
+
     return (
         <div className="manage-user-container">
             <h3 className="title">Manage Users</h3>
