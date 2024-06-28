@@ -6,6 +6,7 @@ import { FaPlus } from "react-icons/fa";
 import { FaRegTrashAlt, FaMinus } from "react-icons/fa";
 import { v4 as uuidv4 } from 'uuid';
 import _ from 'lodash';
+import Lightbox from "react-awesome-lightbox";
 
 const Questions = (props) => {
     const options = [
@@ -14,6 +15,11 @@ const Questions = (props) => {
         { value: 'HARD', label: 'HARD' }
     ]
     const [selectedQuiz, setSelectedQuiz] = useState({});
+    const [isPreviewImage, setIsPreviewImage] = useState(false);
+    const [dataImagePreview, setDataImagePreview] = useState({
+        url: '',
+        title: ''
+    });
     const [questions, setQuestions] = useState(
         [
             {
@@ -37,8 +43,8 @@ const Questions = (props) => {
             const newQuestion = {
                 id: uuidv4(),
                 description: '',
-                image: '',
                 imageFile: '',
+                imageName: '',
                 answers: [
                     {
                         id: uuidv4(),
@@ -143,6 +149,18 @@ const Questions = (props) => {
     const handleSubmitQuestionForQuiz = () => {
         console.log('questions', questions)
     }
+
+    const handlePreviewImage = (questionId) => {
+        let questionClone = _.cloneDeep(questions);
+        let index = questionClone.findIndex(question => question.id === questionId);
+        if (index > -1) {
+            setDataImagePreview({
+                url: URL.createObjectURL(questionClone[index].imageFile),
+                title: questionClone[index].imageName
+            })
+            setIsPreviewImage(true);
+        }
+    }
     return (
         <>
             <div className="question-container">
@@ -183,8 +201,11 @@ const Questions = (props) => {
                                                     onChange={(event) => handleOnchangeFileQuestion(question.id, event)} />
                                                 {<span
                                                     className='text-truncate'
-                                                    style={{ maxWidth: '120px' }}>
-                                                    {question.imageName ? question.imageName : 'No file choosen'}
+                                                    style={{ maxWidth: '120px', cursor: 'pointer' }}>
+                                                    {question.imageName ?
+                                                        <span onClick={() => handlePreviewImage(question.id)}>{question.imageName}</span>
+                                                        :
+                                                        'No file choosen'}
                                                 </span>}
                                             </div>
                                             <div className="col-md-2 btn-action-question">
@@ -247,6 +268,12 @@ const Questions = (props) => {
                                     onClick={() => handleSubmitQuestionForQuiz()}
                                     className='btn btn-primary'>Save</button>
                             </div>
+                        }
+                        {isPreviewImage &&
+                            <Lightbox image={dataImagePreview.url}
+                                title={dataImagePreview.title}
+                                onClose={() => setIsPreviewImage(false)}>
+                            </Lightbox>
                         }
                     </div>
                 </div>
