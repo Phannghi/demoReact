@@ -11,7 +11,8 @@ import { toast } from 'react-toastify';
 import {
     getAllQuizAdmin,
     postCreateNewQuestionForQuiz,
-    postCreateNewAnswerForQuestion
+    postCreateNewAnswerForQuestion,
+    getQuizWithQA
 } from "../../../../services/apiService";
 
 const QuizQA = (props) => {
@@ -38,9 +39,51 @@ const QuizQA = (props) => {
     });
     const [listQuiz, setListQuiz] = useState([]);
     const [selectedQuiz, setSelectedQuiz] = useState({});
+
     useEffect(() => {
         fetchAllQuiz();
     }, []);
+
+    useEffect(() => {
+        if (selectedQuiz && selectedQuiz.value)
+            fetchQuizWithQA();
+    }, [selectedQuiz])
+
+    const urltoFile = (url, filename, mimeType) => {
+        if (url.startsWith('data:')) {
+            var arr = url.split(','),
+                mime = arr[0].match(/:(.*?);/)[1],
+                bstr = atob(arr[arr.length - 1]),
+                n = bstr.length,
+                u8arr = new Uint8Array(n);
+            while (n--) {
+                u8arr[n] = bstr.charCodeAt(n);
+            }
+            var file = new File([u8arr], filename, { type: mime || mimeType });
+            return Promise.resolve(file);
+        }
+        return fetch(url)
+            .then(res => res.arrayBuffer())
+            .then(buf => new File([buf], filename, { type: mimeType }));
+    }
+
+    const fetchQuizWithQA = async () => {
+        let res = await getQuizWithQA(selectedQuiz.value);
+        if (res && res.EC === 0) {
+            // convert base64 to File Object
+            let newQA = [], qa = res.DT.qa;
+            for (const item of qa) {
+                if (item.imageFile) {
+                    item.imageName = `Question-${item.id}.png`;
+                    item.imageFile = await urltoFile(`data:image/png;base64,${item.imageFile}`, `Question-${item.id}.png`, `image/png`)
+                }
+                newQA.push(item);
+            }
+            setQuestions(newQA);
+            console.log('check qa: ', newQA);
+            console.log('check res: ', res);
+        }
+    }
 
     const fetchAllQuiz = async () => {
         let res = await getAllQuizAdmin();
