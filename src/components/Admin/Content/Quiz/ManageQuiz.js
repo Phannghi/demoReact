@@ -7,7 +7,9 @@ import { toast } from 'react-toastify';
 import TableQuiz from './TableQuiz';
 import Accordion from 'react-bootstrap/Accordion';
 import { getAllQuizAdmin } from "../../../../services/apiService";
-
+import QuizQA from './QuizQA';
+import AssignQuiz
+    from './AssignQuiz';
 const ManageQuiz = () => {
     const options = [
         { value: 'EASY', label: 'EASY' },
@@ -62,7 +64,7 @@ const ManageQuiz = () => {
         <div className="quiz-container">
             <h2 className="title mb-3">Manage Quiz</h2>
             <hr />
-            <Accordion defaultActiveKey="0">
+            <Accordion>
                 <Accordion.Item eventKey="0">
                     <Accordion.Header><h5 className='mb-0'>Add new quiz</h5></Accordion.Header>
                     <Accordion.Body>
@@ -111,16 +113,28 @@ const ManageQuiz = () => {
                                 </div>
                             </fieldset>
                         </div>
+                        <div className="list-detail mt-3">
+                            <h3 className='title mb-3 mt-2'>List quizzes</h3>
+                            <TableQuiz
+                                listQuiz={listQuiz}
+                                fetchAllQuiz={fetchAllQuiz}
+                            />
+                        </div>
+                    </Accordion.Body>
+                </Accordion.Item>
+                <Accordion.Item eventKey="1">
+                    <Accordion.Header><h5 className='mb-0'>Updated Question/Answer</h5></Accordion.Header>
+                    <Accordion.Body>
+                        <QuizQA />
+                    </Accordion.Body>
+                </Accordion.Item>
+                <Accordion.Item eventKey="2">
+                    <Accordion.Header><h5 className='mb-0'>Assign Quiz to Users</h5></Accordion.Header>
+                    <Accordion.Body>
+                        <AssignQuiz />
                     </Accordion.Body>
                 </Accordion.Item>
             </Accordion>
-            <div className="list-detail mt-3">
-                <h3 className='title mb-3 mt-2'>List quizzes</h3>
-                <TableQuiz
-                    listQuiz={listQuiz}
-                    fetchAllQuiz={fetchAllQuiz}
-                />
-            </div>
         </div>
     )
 }

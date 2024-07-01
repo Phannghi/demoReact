@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Select from 'react-select';
-import './Questions.scss';
+import './QuizQA.scss';
 import { RiImageAddFill } from "react-icons/ri";
 import { FaPlus } from "react-icons/fa";
 import { FaRegTrashAlt, FaMinus } from "react-icons/fa";
@@ -14,7 +14,7 @@ import {
     postCreateNewAnswerForQuestion
 } from "../../../../services/apiService";
 
-const Questions = (props) => {
+const QuizQA = (props) => {
     const initQuestions = [
         {
             id: uuidv4(),
@@ -235,8 +235,6 @@ const Questions = (props) => {
     return (
         <>
             <div className="question-container">
-                <h2 className="title mb-3">Manage Questions</h2>
-                <hr />
                 <div className="add-new-quiz">
                     <div className="col-8 select-quiz">
                         <label className='form-label fs-6 fw-normal'>Select quiz:</label>
@@ -353,4 +351,4 @@ const Questions = (props) => {
     )
 }
 
-export default Questions;
+export default QuizQA;
